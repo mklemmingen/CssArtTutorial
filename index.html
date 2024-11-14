@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="de" xmlns="http://www.w3.org/1999/html">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MKL Logo Animation Tutorial</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<!-- Personal Introduction -->
+<section id="personal-introduction">
+  <h1> CSS Art Tutorial von mklemmingen </h1>
+  <p>Hallo,
+  </p>
+  <p>
+    dieses Tutorial über CSS Art ist für Anfänger in CSS geeignet, und zeigt, wie
+    ein animiertes Logo erstellt werden kann.
+  </p>
+  <p>
+    Let's Begin!
+  </p>
+</section>
+
+<!-- Table of Contents -->
+<section id="table-of-contents">
+  <h1> Inhaltsangabe </h1>
+  <ul>
+    <li><a href="#introduction">Einstieg und Ziel</a></li>
+    <li><a href="#environment">Screenshot Umgebung</a></li>
+    <li><a href="#geometries">Zugrundeliegende Geometrien</a></li>
+    <li><a href="#html-development">HTML Sicht Entwicklung</a></li>
+    <li><a href="#css-development">CSS Sicht Entwicklung</a></li>
+    <li><a href="#browser-display">Darstellung im Browser</a></li>
+    <li><a href="#complLogoCSS">CSS des Logos - komplett</a></li>
+    <li><a href="#entwicklungsprozess">Entwicklungsprozess dev-sicht</a></li>
+  </ul>
+</section>
+
+<!-- 01 - Einstieg und Ziel -->
+<section id="introduction">
+  <h1>Einstieg und Ziel</h1>
+  <p>Auf der rechten Bildschirmseite sehen Sie, wie das Logo an Ende aussehen soll:</p>
+  <p>Es besteht aus den Buchstaben "M", "K" und "L", die sich in einer stetigen Bewegung bewegen, und in einem
+  bestimmten Interval wieder auf Ihre Startposition zurückkehren.</p>
+  <p>Die Buchstaben sind in einem Tintenklecks eingebettet, der sich ebenfalls bewegt, und dem ganzen eine
+    dynamische Note gibt, als ob das Logo versucht, seine Grenzen zu sprengen. </p>
+  <p>Das Ziel dieses Tutorials ist es, Ihnen zu zeigen, wie Sie dieses Logo mit HTML und CSS erstellen können.</p>
+</section>
+
+<!-- 02 - Screenshot Umgebung -->
+<section id="environment">
+  <h2>Screenshot Umgebung</h2>
+  <p>Wir verwenden einen Code-Editor, um unser HTML und CSS zu schreiben. Um viele Vorteile genießen zu können -
+    wie das Anzeigen von Fehlern, nutze Ich WebStorm. Diese IDE ist für Webentwicklung ausgelegt, und in der
+    Community Edition kostenlos. Es bietet den Vorteil, dass man die HTML-Datei direkt in der IDE oder in einem
+    Browser anschauen kann, und Veränderungen direkt visualisiert werden.
+  </p>
+  <p>Hier ist ein Screenshot der Entwicklungsumgebung:</p>
+  <img src="img/screenshot_editor.jpg" alt="Screenshot der Entwicklungsumgebung WebStorm">
+</section>
+
+<!-- 03 - zugrundeliegende Geometrien -->
+<section id="geometries">
+  <h2>Zugrundeliegende Geometrien</h2>
+
+  <p>Die Geometrien des Logos basieren auf einfachen Formen; Kreise, Rechtecke sowie interne Fonts.
+    Diese werden mit CSS gestaltet und animiert.</p>
+
+  <p> Es gibt einen Kreis, den 'ink-blob', welcher sich auf dem weißen Website-Hintergrund, aber unterhalb der
+    Buchstaben, befindet. Der Kreis besitzt Animationen, und zeichnet einen Schatten unter sich. </p>
+  <p> In einem linearen Verlauf über 6 sekunden dreht sich der Kreis,
+  in einem unendlichen Lauf deformiert sich er sich alle 3 Sekunden und alle 6 Sekunden ändert sich die Farbe des
+  Kreises unendlich Male von weiß #ffff zu einem dunkleren Blau #3498db. </p>
+
+  <p> Die Buchstaben 'M', 'K' und 'L' sind in einem Container, der sich am rechten Bildschirmrand befindet.
+      Die Buchstaben haben Animationen, die sie schweben lassen, ihre Farbe ändern und wie ein Schreibmaschinen-Effekt
+      aussehen lassen. </p>
+</section>
+
+<!-- 04 - 05 HTML Sicht Entwicklung -->
+<section id="html-development">
+  <h2>HTML Sicht Entwicklung</h2>
+  <p> Per CSS kann nur animiert werden, wenn der CSS-Code in ein HTML-File eingebettet ist, oder das HTML-File sich
+    auf die CSS-Datei bezieht. Zudem muss sich der CSS-Code auf die in dem HTML bezeichneten Abschnitte
+    und Klassen beziehen.</p>
+  <p>Der HTML-Code für das Logo sieht wie folgt aus:</p>
+  <pre>
+        <code>
+            &lt;div class="logo-container"&gt;
+              &lt;div class="ink-blob"&gt;&lt;/div&gt;
+              &lt;div class="letter" id="letterM"&gt;M&lt;/div&gt;
+              &lt;div class="letter" id="letterK"&gt;K&lt;/div&gt;
+              &lt;div class="letter" id="letterL"&gt;L&lt;/div&gt;
+            &lt;/div&gt;
+        </code>
+    </pre>
+  <p>
+    Wie sie sehen, gibt es einen Container mit der Klasse <code>logo-container</code>, der die Buchstaben und den
+    Tintenklecks enthält. Die Buchstaben sind <code>div</code>-Elemente mit der Klasse <code>letter</code> und
+    einer eindeutigen ID für jeden Buchstaben. Der Tintenklecks ist ebenfalls ein <code>div</code>-Element mit der
+    Klasse <code>ink-blob</code>.
+  </p>
+  <p>
+    Der HTML-Code ist einfach und übersichtlich, was es einfach macht, die Elemente zu stylen und zu animieren.
+    Der Css-Code bezieht sich auf diese Klassen und IDs, um die Animationen zuzuweisen.
+  </p>
+</section>
+
+<!-- 06 - 07 CSS Sicht Entwicklung -->
+<section id="css-development">
+  <h2>CSS Sicht Entwicklung</h2>
+  <!-- Schritt für Schritt textuelle Erklärung, wie man das Logo in CSS macht --->
+  <p>Hier ist eine Schritt-für-Schritt-Anleitung auf Deutsch, wie dieser CSS-Code funktioniert:</p>
+
+  <p> Zuerst klären wir, was animations, keyframes und transitionen sind</p>
+
+  <h3>Erklärung von Animations</h3>
+
+    <p>
+        <strong>Animationen:</strong>
+        Animationen ermöglichen es, Elemente über einen bestimmten Zeitraum zu bewegen, zu verändern oder zu verändern.
+        Zum Beispiel:
+    </p>
+
+    <pre><code>
+        .element {
+        animation: example 5s infinite;}
+    </code></pre>
+
+    <p>
+        Diese Animation bewegt ein Element über 5 Sekunden und wiederholt sie unendlich.
+        Der Name 'example' bezieht sich auf die Keyframes, die die Animation definieren.
+    </p>
+
+  <h3>Erklärung von Keyframes und Transitionen</h3>
+
+  <p>
+    <strong>Keyframes:</strong>
+    Keyframes definieren die Zustände einer Animation zu bestimmten Zeitpunkten.
+    Zum Beispiel:
+  </p>
+
+  <pre><code>
+    @keyframes example {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(100px); }}
+  </code></pre>
+
+  <p>
+    Diese Keyframes verschieben ein Element von <code>0</code> nach <code>100px</code>
+    über die Dauer der Animation.
+  </p>
+
+  <p>
+    <strong>Transitionen:</strong>
+    Transitionen ermöglichen sanfte Übergänge zwischen
+    verschiedenen Zuständen eines Elements. Zum Beispiel:
+  </p>
+
+  <pre><code>.element {
+    transition: transform 0.3s;.element:hover {
+    transform: scale(1.2);}
+  </code></pre>
+
+  <p>
+    Diese Transition skaliert ein Element sanft, wenn es überfahren wird.
+  </p>
+
+  <h3>Schritt-für-Schritt-Anleitung</h3>
+  <ol>
+
+    <li>
+      <strong>Styling der Buchstaben:</strong>
+      <p>
+        <code>.letter</code> hat eine absolute Positionierung (<code>position: absolute</code>),
+        eine große Schriftgröße (<code>font-size: 50px</code>),
+        und mehrere Animationen (<code>animation: float 3s infinite,
+        colorChange 6s infinite, typing 3s steps(10) infinite</code>).
+      </p>
+    </li>
+
+    <li>
+      <strong>Keyframes für Typing-Effekt:</strong>
+      <p>
+        <code>@keyframes typing</code> definiert die Breite der Buchstaben.
+        Bei 0 % und 100 % ist die Breite <code>0</code>, bei 50% <code>100%</code>.
+      </p>
+    </li>
+
+    <li>
+      <strong>Hover-Effekt für Buchstaben:</strong>
+      <p>
+        <code>.letter:hover</code> skaliert die Buchstaben bei Hover (<code>transform: scale(1.2)</code>)
+        und fügt ein Übergangseffekt hinzu (<code>transition: transform 0.3s</code>).
+      </p>
+      <img src="img/LetterHover.gif" alt="Hover-Effekt für Buchstaben">
+    </li>
+
+    <li>
+      <strong>Spezifische Animationen für Buchstaben:</strong>
+      <p>
+        <code>#letterM</code>, <code>#letterK</code>, und <code>#letterL</code>
+        haben jeweils eigene Float-Animationen
+        (<code>animation-name: floatM</code>,
+        <code>floatK</code>, <code>floatL</code>).
+      </p>
+    </li>
+
+    <li>
+      <strong>Keyframes für Float-Animationen:</strong>
+      <p>
+        <code>@keyframes floatM</code>, <code>floatK</code>, und <code>floatL</code>
+        definieren die Bewegungen der Buchstaben M, K und L.
+      </p>
+        <p>
+        <img src="img/letterM.gif" alt="Buchstabe M einzeln gezeigt">
+        <img src="img/letterK.gif" alt="Buchstabe K einzeln gezeigt">
+        <img src="img/letterL.gif" alt="Buchstabe L einzeln gezeigt">
+        </p>
+    </li>
+
+    <li>
+      <strong>Keyframes für Farbwechsel:</strong>
+      <p>
+        <code>@keyframes colorChange</code> ändert die Farbe der Buchstaben.
+        Bei 0 % und 100 % ist die Farbe <code>#3498db</code>, bei 50% <code>#e74c3c</code>.
+      </p>
+    </li>
+
+    <li>
+      <strong>Styling des Tintenflecks:</strong>
+      <p>
+        <code>.ink-blob</code> ist ein absolut positioniertes Element (<code>position: absolute</code>),
+        das am unteren Rand zentriert ist (<code>bottom: 0</code>, <code>left: 50%</code>).
+        Es hat eine runde Form (<code>border-radius: 50%</code>) und mehrere Animationen
+        (<code>animation: swirl 6s infinite linear, deform 3s infinite, blobColorChange 6s infinite</code>).
+      </p>
+    </li>
+
+    <li>
+      <strong>Keyframes für Tintenfleck-Animationen:</strong>
+        <p>
+            <code>@keyframes swirl</code> dreht den Tintenfleck.
+        </p>
+        <img src="img/inkblobSwirlOnly.jpg" alt="Tintenklecks ohne Farbwechsel und Deformation">
+        <p>
+            <code>@keyframes deform</code> ändert die Form des Tintenflecks
+        </p>
+        <img src="img/InkBlobWithDeform.gif" alt="Tintenklecks mit Deformation, ohne Farbwechsel">
+        <p>
+            <code>@keyframes blobColorChange</code> ändert die Hintergrundfarbe des Tintenflecks.
+        </p>
+        <img src="img/InkBlobWithDeformAndWithBlobColorChange.gif" alt="Tintenklecks mit Farbwechsel und Deformation">
+    </li>
+
+    <h3>Ausgeschrieben in codeform bedeutet das:</h3>
+
+      <ul>
+        <li>
+          <code>@keyframes typing</code>: Definiert die Breite der Buchstaben.
+          <pre><code>
+            @keyframes typing {
+                0%, 100% { width: 0; }
+                50% { width: 100%; }
+            }
+          </code></pre>
+        </li>
+        <li>
+          <code>@keyframes floatM</code>: Definiert die animation die "schwebe" animation des M Buchstabens.
+          <pre><code>
+            @keyframes floatM {
+                0%, 100% { top: 50px; left: 50px; }
+                33% { top: 20px; left: 100px; }
+                66% { top: 100px; left: 20px; }
+            }
+          </code></pre>
+        </li>
+        <li>
+          <code>@keyframes floatK</code>: Definiert die animation die "schwebe" animation des K Buchstabens.
+          <pre><code>
+            @keyframes floatK {
+                0%, 100% { top: 50px; left: 100px; }
+                33% { top: 100px; left: 50px; }
+                66% { top: 20px; left: 100px; }
+            }
+          </code></pre>
+        </li>
+        <li>
+          <code>@keyframes floatL</code>: Definiert die animation die "schwebe" animation des L Buchstabens.
+          <pre><code>
+            @keyframes floatL {
+                0%, 100% { top: 100px; left: 50px; }
+                33% { top: 50px; left: 20px; }
+                66% { top: 100px; left: 100px; }
+            }
+          </code></pre>
+        </li>
+        <li>
+          <code>@keyframes colorChange</code>: Ändert die Farbe der Buchstaben.
+          <pre><code>
+            @keyframes colorChange {
+                0%, 100% { color: #3498db; }
+                50% { color: #e74c3c; }
+            }
+          </code></pre>
+        </li>
+        <li>
+          <code>@keyframes blobColorChange</code>: Ändert die Farbe des Ink-Blobs (Kreises)
+          <pre><code>
+            @keyframes blobColorChange {
+                0%, 100% { background-color: #ffffff; }
+                50% { background-color: #3498db; }
+            }
+          </code></pre>
+        </li>
+        <li>
+          <code>@keyframes swirl</code>: Rotiert den Kreis.
+          <pre><code>
+            @keyframes swirl {
+                0% { transform: translateX(-50%) rotate(0deg); }
+                100% { transform: translateX(-50%) rotate(360deg); }
+            }
+          </code></pre>
+        </li>
+        <li>
+          <code>@keyframes deform</code>: Ändert die Form des Kreises.
+          <pre><code>
+            @keyframes deform {
+                0%, 100% { border-radius: 50%; }
+                25% { border-radius: 40% 60% 60% 40%; }
+                50% { border-radius: 60% 40% 40% 60%; }
+                75% { border-radius: 50% 50% 60% 40%; }
+            }
+          </code></pre>
+        </li>
+      </ul>
+
+  </ol>
+
+</section>
+
+
+<!-- 08 - Darstellung im Browser -->
+<section id="browser-display">
+  <h2>Darstellung im Browser</h2>
+  <p>Verfolgen Sie jetzt für eine Weile jeden Baustein des Logos auf der rechten Seite des
+    Bildschirms, den Sie durch die Schritt-für-Schritt-Anleitung kennengelernt haben, und versuchen Sie,
+    die Animationen nachzuvollziehen.</p>
+  <p> Dabei ist es wichtig sich die Attribute der Bausteine zu jedem Zeitpunkt klarzumachen, und dann zu
+  schauen, welche sich gerade verändern.</p>
+</section>
+
+<section id="entwicklungsprozess">
+    <h2>Entwicklungsprozess</h2>
+    <p>Erste Iteration: </p>
+    <img src="img/FirstWebstormIteration.gif" alt="Erste Iteration des Logos">
+    <p>Zweite Iteration: </p>
+    <img src="img/secondLogoIteration.gif" alt="Zweite Iteration des Logos">
+    <p>Dritte Iteration: </p>
+    <img src="img/thirdIteration.gif" alt="Dritte Iteration des Logos">
+    <p>Vierte Iteration: </p>
+    <img src="img/fourthIteration.gif" alt="Vierte Iteration des Logos">
+</section>
+
+<!-- 09 - Darstellung im Browser -->
+<section id="complLogoCSS">
+  <h2>CSS des Logos - komplett:</h2>
+  <pre><code>
+    /* Setting up the logo container */
+    .logo-container {
+        position: fixed; /* Setting fixed positioning */
+        width: 200px; /* Setting width */
+        height: 200px; /* Setting height */
+    }
+
+    /* Styling the letters */
+    .letter {
+        position: absolute; /* Setting absolute positioning */
+        font-size: 50px; /* Setting font size */
+        font-weight: bold; /* Setting font weight */
+        animation: /* Adding multiple animations */
+                float 3s infinite,
+                colorChange 6s infinite,
+                typing 3s steps(10) infinite;
+        overflow: hidden; /* Hiding overflow */
+        white-space: nowrap; /* Preventing text wrapping */
+        border-right: 2px solid; /* Adding right border */
+        text-shadow: /* Adding text shadow */
+                2px 2px 5px rgba(0, 0, 0, 0.3),
+                0 0 10px rgba(255, 255, 255, 0.5);
+    }
+
+    /* Defining keyframes for typing effect */
+    @keyframes typing {
+        0%, 100% { width: 0; } /* Starting and ending width */
+        50% { width: 100%; } /* Midway width */
+    }
+
+    /* Adding hover effect to letters */
+    .letter:hover {
+        transform: scale(1.2); /* Scaling up on hover */
+        transition: transform 0.3s; /* Adding transition effect */
+    }
+
+    /* Assigning specific animations to each letter */
+    #letterM {
+        animation-name: floatM; /* Using floatM animation */
+    }
+
+    #letterK {
+        animation-name: floatK; /* Using floatK animation */
+    }
+
+    #letterL {
+        animation-name: floatL; /* Using floatL animation */
+    }
+
+    /* Defining keyframes for floating animation of letter M */
+    @keyframes floatM {
+        0%, 100% { top: 50px; left: 50px; } /* Starting and ending position */
+        33% { top: 20px; left: 100px; } /* Intermediate position */
+        66% { top: 100px; left: 20px; } /* Intermediate position */
+    }
+
+    /* Defining keyframes for floating animation of letter K */
+    @keyframes floatK {
+        0%, 100% { top: 50px; left: 100px; } /* Starting and ending position */
+        33% { top: 100px; left: 50px; } /* Intermediate position */
+        66% { top: 20px; left: 100px; } /* Intermediate position */
+    }
+
+    /* Defining keyframes for floating animation of letter L */
+    @keyframes floatL {
+        0%, 100% { top: 100px; left: 50px; } /* Starting and ending position */
+        33% { top: 50px; left: 20px; } /* Intermediate position */
+        66% { top: 100px; left: 100px; } /* Intermediate position */
+    }
+
+    /* Defining keyframes for color change animation */
+    @keyframes colorChange {
+        0%, 100% { color: #3498db; } /* Starting and ending color */
+        50% { color: #e74c3c; } /* Midway color */
+    }
+
+    /* Styling the ink blob */
+    .ink-blob {
+        position: absolute; /* Setting absolute positioning */
+        bottom: 0; /* Positioning at the bottom */
+        left: 50%; /* Centering horizontally */
+        width: 200px; /* Setting width */
+        height: 200px; /* Setting height */
+        background-color: #ffffff; /* Setting background color */
+        border-radius: 50%; /* Making it circular */
+        transform: translateX(-50%); /* Centering horizontally */
+        animation: /* Adding multiple animations */
+                swirl 6s infinite linear,
+                deform 3s infinite,
+                blobColorChange 6s infinite;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.2); /* Adding shadow */
+    }
+
+    /* Defining keyframes for blob color change */
+    @keyframes blobColorChange {
+        0%, 100% { background-color: #ffffff; } /* Starting and ending color */
+        50% { background-color: #3498db; } /* Midway color */
+    }
+
+    /* Defining keyframes for swirling animation */
+    @keyframes swirl {
+        0% { transform: translateX(-50%) rotate(0deg); } /* Starting position */
+        100% { transform: translateX(-50%) rotate(360deg); } /* Ending position */
+    }
+
+    /* Defining keyframes for deforming animation */
+    @keyframes deform {
+        0%, 100% { border-radius: 50%; } /* Starting and ending shape */
+        25% { border-radius: 40% 60% 60% 40%; } /* Intermediate shape */
+        50% { border-radius: 60% 40% 40% 60%; } /* Intermediate shape */
+        75% { border-radius: 50% 50% 60% 40%; } /* Intermediate shape */
+    }
+  </code></pre>
+</section>
+
+<!-- Logo container that follows the scroller -->
+<div class="logo-container">
+  <div class="ink-blob"></div>
+  <div class="letter" id="letterM">M</div>
+  <div class="letter" id="letterK">K</div>
+  <div class="letter" id="letterL">L</div>
+</div>
+</body>
+</html>

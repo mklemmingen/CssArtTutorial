@@ -1,0 +1,202 @@
+/* inclusive color schema */
+:root {
+    --primary-color: #3498db;
+    --secondary-color: #2c3e50;
+    --background-color: #f5f5f5;
+    --text-color: #333;
+}
+
+/* Setting the body to use flexbox for centering content */
+body {
+    font-family: 'Roboto', sans-serif; /* Using Roboto font */
+    display: flex; /* Using flexbox layout */
+    flex-direction: column; /* Stacking items vertically */
+    align-items: center; /* Centering items horizontally */
+    background-color: var(--background-color); /* Setting background color */
+    color: var(--text-color); /* Setting text color */
+    background-size: 400% 400%; /* Setting background size for animation */
+    padding-right: 220px; /* Adding padding to make space for the fixed logo */
+    margin: 0; /* Removing default margin */
+}
+
+/* clear and easy to use navigation */
+nav {
+    background-color: var(--primary-color);
+    padding: 10px;
+}
+nav a {
+    color: #fff;
+    margin: 0 10px;
+    text-decoration: none;
+}
+
+/* Styling the main headers (h1) */
+h1 {
+    font-size: 2.5em; /* Larger font size */
+    font-weight: 700; /* Bold font weight */
+    color: var(--secondary-color); /* Using secondary color */
+    margin-bottom: 20px; /* Adding bottom margin */
+}
+
+/* Styling the section headers (h2) */
+h2 {
+    font-size: 2em; /* Slightly smaller font size */
+    font-weight: 700; /* Bold font weight */
+    color: var(--secondary-color); /* Using secondary color */
+    margin-bottom: 15px; /* Adding bottom margin */
+}
+
+/* Styling the sub-section headers (h3) */
+h3 {
+    font-size: 1.5em; /* Smaller font size */
+    font-weight: 700; /* Bold font weight */
+    color: #7f8c8d; /* Gray color */
+    margin-bottom: 10px; /* Adding bottom margin */
+}
+
+/* Styling the pre element */
+pre {
+    background-color: var(--background-color); /* Using background color */
+    border: 1px solid #ccc; /* Light gray border */
+    border-radius: 5px; /* Rounded corners */
+    padding: 10px; /* Padding inside the pre element */
+    overflow-x: auto; /* Horizontal scroll for long lines */
+}
+
+/* Styling the code element */
+code {
+    font-family: 'Courier New', Courier, monospace; /* Monospaced font */
+    font-size: 14px; /* Font size */
+    color: var(--text-color); /* Using text color */
+    background-color: var(--background-color); /* Using background color */
+    padding: 2px 4px; /* Padding inside the code element */
+    border-radius: 3px; /* Rounded corners */
+}
+
+/* Setting up the logo container */
+.logo-container {
+    position: fixed; /* Setting fixed positioning */
+    top: 50%; /* Centering vertically */
+    right: 20%; /* Positioning 10px from the right */
+    transform: translateY(-50%); /* Centering vertically */
+    width: 200px; /* Setting width */
+    height: 200px; /* Setting height */
+}
+
+/* Styling the sections */
+section {
+    width: 50%; /* Setting maximum width to 50% */
+    min-width: 50em; /* Setting minimum width to 50em */
+    margin: 20px 0; /* Adding vertical margin */
+    padding: 20px; /* Adding padding */
+    background: #fff; /* Setting background color */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Adding shadow */
+    border-radius: 8px; /* Adding border radius */
+}
+
+/* Styling the letters */
+.letter {
+    position: absolute; /* Setting absolute positioning */
+    font-size: 50px; /* Setting font size */
+    font-weight: bold; /* Setting font weight */
+    animation: /* Adding multiple animations */
+            float 3s infinite,
+            colorChange 6s infinite,
+            typing 3s steps(10) infinite;
+    overflow: hidden; /* Hiding overflow */
+    white-space: nowrap; /* Preventing text wrapping */
+    border-right: 2px solid; /* Adding right border */
+    text-shadow: /* Adding text shadow */
+            2px 2px 5px rgba(0, 0, 0, 0.3),
+            0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+/* Defining keyframes for typing effect */
+@keyframes typing {
+    0% { width: 0; } /* Starting width */
+    50% { width: 50%; } /* Midway width */
+    100% { width: 100%; } /* Ending width */
+}
+
+/* Adding hover effect to letters */
+.letter:hover {
+    transform: scale(1.2); /* Scaling up on hover */
+    transition: transform 0.3s; /* Adding transition effect */
+}
+
+/* Assigning specific animations to each letter */
+#letterM {
+    animation-name: floatM; /* Using floatM animation */
+}
+
+#letterK {
+    animation-name: floatK; /* Using floatK animation */
+}
+
+#letterL {
+    animation-name: floatL; /* Using floatL animation */
+}
+
+/* Defining keyframes for floating animation of letter M */
+@keyframes floatM {
+    0%, 100% { top: 50px; left: 50px; } /* Starting and ending position */
+    33% { top: 20px; left: 100px; } /* Intermediate position */
+    66% { top: 100px; left: 20px; } /* Intermediate position */
+}
+
+/* Defining keyframes for floating animation of letter K */
+@keyframes floatK {
+    0%, 100% { top: 50px; left: 100px; } /* Starting and ending position */
+    33% { top: 100px; left: 50px; } /* Intermediate position */
+    66% { top: 20px; left: 100px; } /* Intermediate position */
+}
+
+/* Defining keyframes for floating animation of letter L */
+@keyframes floatL {
+    0%, 100% { top: 100px; left: 50px; } /* Starting and ending position */
+    33% { top: 50px; left: 20px; } /* Intermediate position */
+    66% { top: 100px; left: 100px; } /* Intermediate position */
+}
+
+/* Defining keyframes for color change animation */
+@keyframes colorChange {
+    0%, 100% { color: #3498db; } /* Starting and ending color */
+    50% { color: #e74c3c; } /* Midway color */
+}
+
+/* Styling the ink blob */
+.ink-blob {
+    position: absolute; /* Setting absolute positioning */
+    bottom: 0; /* Positioning at the bottom */
+    left: 50%; /* Centering horizontally */
+    width: 200px; /* Setting width */
+    height: 200px; /* Setting height */
+    background-color: #ffffff; /* Setting background color */
+    border-radius: 50%; /* Making it circular */
+    transform: translateX(-50%); /* Centering horizontally */
+    animation: /* Adding multiple animations */
+            swirl 6s infinite linear,
+            deform 3s infinite,
+            blobColorChange 6s infinite;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2); /* Adding shadow */
+}
+
+/* Defining keyframes for blob color change */
+@keyframes blobColorChange {
+    0%, 100% { background-color: #ffffff; } /* Starting and ending color */
+    50% { background-color: #3498db; } /* Midway color */
+}
+
+/* Defining keyframes for swirling animation */
+@keyframes swirl {
+    0% { transform: translateX(-50%) rotate(0deg); } /* Starting position */
+    100% { transform: translateX(-50%) rotate(360deg); } /* Ending position */
+}
+
+/* Defining keyframes for deforming animation */
+@keyframes deform {
+    0%, 100% { border-radius: 50%; } /* Starting and ending shape */
+    25% { border-radius: 40% 60% 60% 40%; } /* Intermediate shape */
+    50% { border-radius: 60% 40% 40% 60%; } /* Intermediate shape */
+    75% { border-radius: 50% 50% 60% 40%; } /* Intermediate shape */
+}
